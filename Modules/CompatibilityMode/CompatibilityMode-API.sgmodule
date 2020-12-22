@@ -1,6 +1,0 @@
-#!name=Compatibility Mode API
-#!desc=兼容模式 API
-#!system=ios
-
-[General]
-http-api = %APPEND% mieq@0.0.0.0:6166

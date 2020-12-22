@@ -1,0 +1,7 @@
+#!name=Compatibility Mode
+#!desc=兼容模式，详情参见 https://t.me/cool_scripts/286
+#!system=ios
+
+[General]
+compatibility-mode = 3
+http-api = %APPEND% mieq@0.0.0.0:6166
