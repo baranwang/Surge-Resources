@@ -1,0 +1,10 @@
+#!name=小黑盒自动签到
+#!desc=进入"小黑盒" - "我"，若弹出"首次写入 heybox Cookie 成功"即可正常食用。到 cron 设定时间自动签到时，若弹出"小黑盒 - 签到成功"即完成签到，其中「✓」表示成功，「○」表示重复，「✗」表示失败。
+#!system=ios
+
+[Script]
+Task: HeyBox = type=cron,cronexp=0 0 * * *,wake-system=1,script-path=https://raw.githubusercontent.com/zZPiglet/Task/master/heybox/heybox.js
+Cookies: HeyBox = type=http-request,pattern=^https:\/\/api\.xiaoheihe\.cn\/account\/home_v\d\/\?,script-path=https://raw.githubusercontent.com/zZPiglet/Task/master/heybox/heybox.js
+
+[MITM]
+hostname = %APPEND% api.xiaoheihe.cn

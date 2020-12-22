@@ -1,0 +1,6 @@
+#!name=Compatibility Mode Switch
+#!desc=兼容模式开关
+#!system=ios
+
+[General]
+compatibility-mode = 3

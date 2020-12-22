@@ -1,0 +1,10 @@
+#!name=115 自动摇一摇
+#!desc=进入"115"并摇一摇，若弹出"首次写入115 Cookie 成功"即可正常食用。到 cron 设定时间自动摇一摇时，若弹出"115 - 摇一摇成功"即完成摇一摇。
+#!system=ios
+
+[Script]
+Tasks: 115 = type=cron,cronexp="1 0 * * *",wake-system=1,script-path=https://raw.githubusercontent.com/zZPiglet/Task/master/115/115.js
+Cookies: 115 = type=http-request,pattern=^https?:\/\/proapi\.115\.com\/ios\/user\/takespc\?,script-path=https://raw.githubusercontent.com/zZPiglet/Task/master/115/115.js
+
+[MITM]
+hostname = %APPEND% proapi.115.com
