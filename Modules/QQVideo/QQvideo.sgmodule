@@ -1,0 +1,9 @@
+#!name=腾讯视频签到
+#!desc=手机浏览器访问下: https://film.qq.com/ 随便选 1 部电影观看。手机浏览器访问下: http://v.qq.com/x/bu/mobile_checkin 页面提示提示签到成功, 系统提示: 获取Cookie: 成功 （为保成功率，请刷新一下页面再获取一次）
+
+[Script]
+http-request ^https:\/\/access.video.qq.com\/user\/auth_refresh script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/videoqq/videoqq.cookie.js
+cron "10 0 0 * * *" script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/videoqq/videoqq.js
+
+[MITM]
+hostname = %APPEND% *.video.qq.com
