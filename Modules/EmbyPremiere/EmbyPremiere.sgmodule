@@ -1,0 +1,8 @@
+#!name=Emby Premiere
+#!desc=Emby Premiere Unlock
+
+[Script]
+EmbyPremiere.js = type=http-response,pattern=^https?:\/\/mb3admin.com\/admin\/service\/registration,requires-body=true,script-path=https://raw.githubusercontent.com/baranwang/Surge-Resources/master/Modules/baranwang/EmbyPremiere/EmbyPremiere.js
+
+[MITM]
+hostname = %APPEND% mb3admin.com
