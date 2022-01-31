@@ -1,3 +1,25 @@
+const tokenKey = 'dlercloud-token';
+let token = $persistentStore.read(tokenKey);
+
+(async () => {
+  const { email, password, multiple } = getOptions();
+
+  if (!token) {
+    await API.Login(email, password);
+  }
+
+  let log;
+  try {
+    log = await API.Checkin(multiple);
+  } catch (error) {
+    await API.Login(email, password);
+    log = await API.Checkin(multiple);
+  }
+  console.log(log);
+  $notification.post('DlerCloud', log.checkin, `剩余流量: ${log.unused}`);
+  $done();
+})();
+
 async function request(url, params) {
   const body = JSON.stringify(params);
   return new Promise((resolve, reject) => {
@@ -27,17 +49,20 @@ async function request(url, params) {
 
 const API = {
   Login: async function (email, passwd) {
-    return await request('/api/v1/login', {
+    const user = await request('/api/v1/login', {
       email,
       passwd,
     });
+    $persistentStore.write(tokenKey, user.token);
+    token = user.token;
+    return user;
   },
   Logout: async function (access_token) {
     return await request('/api/v1/logout', { access_token });
   },
-  Checkin: async function (access_token, multiple = 50) {
+  Checkin: async function (multiple = 50) {
     return await request('/api/v1/checkin', {
-      access_token,
+      access_token: token,
       multiple,
     });
   },
@@ -61,10 +86,3 @@ function getOptions() {
 
   return options;
 }
-
-(async () => {
-  const { email, password, multiple } = getOptions();
-  const user = await API.Login(email, password);
-  const log = await API.Checkin(user.token, multiple);
-  $done(log.checkin);
-})();
