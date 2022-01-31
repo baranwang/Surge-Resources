@@ -1,5 +1,5 @@
 #!name=京东多合一签到脚本
-#!desc=初次使用时, Safari 浏览器打开登录 https://bean.m.jd.com ,点击签到并且出现签到日历后, 如果通知获得 Cookie 成功, 则可以使用此签到脚本。
+#!desc=https://github.com/NobyDa/Script/tree/master/JD-DailyBonus
 #!system=ios
 
 [Script]

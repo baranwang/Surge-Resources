@@ -1,0 +1,5 @@
+#!name=DlerCloud Checkin
+#!desc=DlerCloud 自动签到
+
+[Script]
+DlerCloudCheckin = type=cron,cronexp=0 * * * *,argument=email=foobar@email.com&password=password&multiple=50,script-path=https://github.com/baranwang/Surge-Resources/raw/master/Modules/DlerCloud/DlerCloud.js
