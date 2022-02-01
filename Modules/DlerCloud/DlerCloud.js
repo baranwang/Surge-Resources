@@ -64,9 +64,20 @@ function getOptions() {
 
 (async () => {
   const { email, password, multiple } = getOptions();
+  
   const user = await API.Login(email, password);
+  console.log(`登录成功, Token: ${user.token}`);
+  console.log(`套餐: ${user.plan}`);
+  console.log(`到期时间: ${user.plan_time}`);
+  console.log(`已用流量: ${user.used}`);
+  console.log(`剩余流量: ${user.unused}`);
+
   const log = await API.Checkin(user.token, multiple);
-  console.log(log);
-  $notification.post('DlerCloud', log.checkin, `剩余流量: ${log.unused}`);
+  console.log(log.checkin);
+  console.log(`剩余流量: ${log.unused}`);
+
+  await API.Logout(user.token);
+  console.log('Token 注销成功');
+
   $done();
 })();
