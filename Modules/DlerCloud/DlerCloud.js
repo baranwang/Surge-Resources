@@ -1,5 +1,10 @@
-const tokenKey = 'dlercloud-token';
-let token = $persistentStore.read(tokenKey);
+const TOKEN_KEY = 'dlercloud-token';
+
+const DEFAULT_OPTIONS = {
+  multiple: 50,
+};
+
+let token = $persistentStore.read(TOKEN_KEY);
 
 (async () => {
   const { email, password, multiple } = getOptions();
@@ -53,7 +58,7 @@ const API = {
       email,
       passwd,
     });
-    $persistentStore.write(tokenKey, user.token);
+    $persistentStore.write(TOKEN_KEY, user.token);
     token = user.token;
     return user;
   },
@@ -69,7 +74,7 @@ const API = {
 };
 
 function getOptions() {
-  const options = {};
+  let options = Object.assign({}, DEFAULT_OPTIONS);
   if (typeof $argument != 'undefined') {
     try {
       const params = Object.fromEntries(
@@ -80,7 +85,7 @@ function getOptions() {
       );
       Object.assign(options, params);
     } catch (error) {
-      console.error(`$argument 解析失败，$argument: + ${argument}`);
+      console.error(`$argument 解析失败，$argument: + ${$argument}`);
     }
   }
 
