@@ -1,0 +1,5 @@
+#!name=Reject SentinelOne
+#!desc=Reject SentinelOne
+
+[Rule]
+PROCESS-NAME,/Library/Sentinel/sentinel-agent.bundle/Contents/MacOS/sentineld.app/Contents/MacOS/sentineld,REJECT
